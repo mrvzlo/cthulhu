@@ -1,30 +1,22 @@
-<template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
-</template>
-
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+@import '@/assets/css/main.scss';
 </style>
+
+<template>
+   <div class="d-flex flex-column vh-100 position-relative">
+      <a class="btn nav-link btn-primary ms-auto m-1 py-1 px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#menu">
+         <i class="fas fa-eye fa-fw"></i>
+      </a>
+      <div class="flex-grow-1 pt-2 text-center">
+         <router-view />
+      </div>
+      <img src="~@/assets/images/wave.svg" alt="wave" class="wave" />
+   </div>
+
+   <div class="offcanvas offcanvas-bottom border-0 bg-transparent" id="menu">
+      <img src="~@/assets/images/wave.svg" alt="wave" class="wave" />
+      <div class="offcanvas-body py-1 px-0 bg-primary">
+         <router-link to="/" class="nav-link" data-bs-dismiss="offcanvas"></router-link>
+      </div>
+   </div>
+</template>
