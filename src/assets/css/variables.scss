@@ -1,14 +1,27 @@
 $min-contrast-ratio: 4;
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
-$warning: #a50;
-$success: #0a5;
+$warning: #973;
+$success: #185;
 $danger: #a22;
 $primary: #266;
 $info: #05a;
+$secondary: #aaa;
+$input-disabled-bg: #ccc;
+
+$modal-content-bg: $secondary;
+$modal-header-border-color: #000;
+$modal-content-border-color: #000;
+
+$btn-border-radius: 10%;
+$btn-border-radius-sm: 25%;
+
+$input-border-radius: 0;
+$input-border-radius-sm: 0;
+$input-border-radius-lg: 0;
 
 $input-btn-focus-width: 0;
 $headings-margin-bottom: 0;
 $offcanvas-backdrop-opacity: 0;
 $offcanvas-vertical-height: 40vh;
-$transition-collapse: height 0.2s !default;
+$transition-collapse: height 0.4s ease-out;

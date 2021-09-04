@@ -1,0 +1,61 @@
+.btn:active {
+   .fa-eye {
+      color: #d55;
+   }
+}
+
+.btn-spiked {
+   border-left-width: 5px;
+   border-right-width: 5px;
+   position: relative;
+
+   &:active,
+   &:focus {
+      border-left-width: 1px;
+      border-right-width: 1px;
+   }
+
+   &::before,
+   &::after {
+      background-image: url('~@/assets/images/spikes.svg');
+      content: '';
+      width: 10px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+   }
+
+   &::before {
+      left: -6px;
+   }
+
+   &::after {
+      right: -6px;
+   }
+}
+
+.nav-link {
+   color: #fff;
+   display: inline-block;
+
+   &,
+   &:hover,
+   &:focus {
+      color: rgba($color: #fff, $alpha: 0.5);
+      &.router-link-exact-active {
+         color: rgba($color: #fff, $alpha: 1);
+      }
+   }
+}
+
+.unsure:hover {
+   &::after {
+      content: '?';
+   }
+}
+
+.border-bottom-square {
+   border-bottom-left-radius: 0;
+   border-bottom-right-radius: 0;
+}

@@ -1,0 +1,35 @@
+.wave {
+   height: 100px;
+   img {
+      max-height: 100px;
+      position: absolute;
+      bottom: 0;
+      width: 102%;
+      margin-bottom: -1px;
+   }
+   .left {
+      animation: scroll-left 15s infinite linear;
+   }
+
+   .right {
+      animation: scroll-right 15s infinite linear;
+   }
+}
+
+@keyframes scroll-left {
+   0% {
+      transform: translate(0, 0);
+   }
+   100% {
+      transform: translate(-99%, 0);
+   }
+}
+
+@keyframes scroll-right {
+   0% {
+      transform: translate(99%, 0);
+   }
+   100% {
+      transform: translate(0%, 0);
+   }
+}
