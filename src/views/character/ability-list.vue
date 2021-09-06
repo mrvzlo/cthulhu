@@ -1,6 +1,6 @@
 <template>
-   <div class="row mt-3 mx-0 justify-content-center">
-      <div class="col-lg col-md-3 col-4 mb-2 d-grid" v-for="ability in list" v-bind:key="ability">
+   <div class="row mt-3 mx-2 justify-content-center">
+      <div class="col-lg col-md-3 col-4 mb-2 d-grid px-2" v-for="ability in list" v-bind:key="ability">
          <div class="d-flex justify-content-between">
             <div class="fs-4 align-self-center lh-1">{{ ability.short }}</div>
             <button
@@ -13,7 +13,7 @@
             </button>
          </div>
          <div :class="'d-flex three-level-check ' + (character.abilities[ability.id].value ? '' : 'empty')">
-            <div class="col-7 p-0">
+            <div class="col p-0">
                <input
                   type="number"
                   class="form-control h-100 fs-5 p-1"
@@ -22,7 +22,7 @@
                   @change="checkLimit(ability)"
                />
             </div>
-            <div class="col-5 p-0">
+            <div class="col-5 p-0" v-if="!ability.pureRandom">
                <input class="form-control form-control-small" readonly :value="div(ability.id, 2)" />
                <input class="form-control form-control-small" readonly :value="div(ability.id, 5)" />
             </div>

@@ -4,4 +4,5 @@ export default interface AbilityInterface {
    short: string;
    min: number;
    description: string;
+   pureRandom: boolean;
 }

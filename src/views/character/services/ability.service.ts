@@ -16,12 +16,16 @@ export default class AbilityService {
       return this.getAll()[id];
    }
 
-   getAll(): AbilityInterface[] {
-      return Object.assign({}, ...list.map((x: AbilityInterface) => ({ [x.id]: x })));
+   getNotRandom(): AbilityInterface[] {
+      return this.getAll(this.notRandom);
+   }
+
+   getAll(filtered: AbilityInterface[] = list): AbilityInterface[] {
+      return Object.assign({}, ...filtered.map((x: AbilityInterface) => ({ [x.id]: x })));
    }
 
    abilitiesCount(): number {
-      return Object.keys(this.getAll()).length;
+      return this.notRandom.length;
    }
 
    apply(toApply: number[]): void {
@@ -34,16 +38,20 @@ export default class AbilityService {
 
    setRandomChoice(): void {
       this.choice = [];
-      list.forEach((x, i) => {
-         this.choice[i] = this.randomValue(x.min) * 5;
+      this.notRandom.forEach((x, i) => {
+         this.choice[i] = this.randomValue(x.min);
       });
    }
 
-   randomValue(min: number): number {
-      return this.randomInt(6) + this.randomInt(6) + (min == 40 ? 6 : this.randomInt(6));
+   randomValue(min = 0): number {
+      return 5 * (this.randomInt(6) + this.randomInt(6) + (min == 40 ? 6 : this.randomInt(6)));
    }
 
    randomInt(max: number): number {
       return Math.floor(Math.random() * max) + 1;
+   }
+
+   get notRandom(): AbilityInterface[] {
+      return list.filter((x) => !x.pureRandom);
    }
 }

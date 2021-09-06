@@ -17,10 +17,14 @@
       border: solid 1px #000;
    }
 
-   *:first-child {
+   > *:not(:last-child) {
       .form-control {
          border-right: none;
       }
+   }
+
+   > *:first-child {
+      height: 45px;
    }
 
    .form-control:not(:first-child) {

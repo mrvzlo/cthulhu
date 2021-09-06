@@ -21,9 +21,10 @@
       content: '';
       width: 10px;
       position: absolute;
-      top: 0;
-      bottom: 0;
+      top: 50%;
       z-index: -1;
+      transform: translateY(-50%);
+      height: 90%;
    }
 
    &::before {

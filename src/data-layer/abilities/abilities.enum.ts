@@ -7,4 +7,5 @@ export enum AbilitiesEnum {
    Pow = 6,
    Int = 7,
    Edu = 8,
+   Lck = 9,
 }

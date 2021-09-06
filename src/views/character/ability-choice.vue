@@ -5,7 +5,7 @@
       <div class="fs-2">Набор атрибутов</div>
       <div class="w-50px">
          <button class="btn btn-warning py-1" v-on:click="reset()" v-if="!manual && choice.length !== service.abilitiesCount()">
-            <i class="fas fa-sync"></i>
+            <i class="fas fa-sync fa-fw"></i>
          </button>
       </div>
    </div>
@@ -71,15 +71,15 @@
       </div>
    </div>
 
-   <div v-if="done">
-      <button class="btn btn-success mt-3">
+   <div v-if="isDone">
+      <button class="btn btn-success mt-3" v-on:click="done">
          <i class="fas fa-check px-4"></i>
       </button>
    </div>
 
    <modal :modalTitle="'Выберите атрибут'" :id="'abilityPick'" :specificClass="'modal-sm'">
       <div class="py-2">
-         <div v-for="ability in service.getAll()" v-bind:key="ability">
+         <div v-for="ability in service.getNotRandom()" v-bind:key="ability">
             <div v-if="character.abilities[ability.id].value === 0" class="dropdown-item px-3" data-bs-dismiss="modal" v-on:click="apply(ability.id)">
                {{ ability.name }}
             </div>
@@ -99,13 +99,10 @@ import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
 @Options({
    components: { Modal, AbilityList },
    computed: {
-      manual: function () {
-         return this.tab === 2;
-      },
       choice: function (): number[] {
          return this.service.choice;
       },
-      done: function (): boolean {
+      isDone: function (): boolean {
          return (this.manual && this.character.abilityPoints == 0) || (!this.manual && this.choice.length === 0);
       },
    },
@@ -116,6 +113,10 @@ export default class Abilities extends Vue {
    character = new Character();
    picked = -1;
    tab = 0;
+
+   get manual(): boolean {
+      return this.tab === 2;
+   }
 
    created(): void {
       this.setDefaultChoice();
@@ -148,6 +149,10 @@ export default class Abilities extends Vue {
    reset(): void {
       this.service.apply(this.character.abilities.map((x) => x.value));
       this.character.abilities.forEach((x) => (x.value = 0));
+   }
+
+   done(): void {
+      if (!this.manual) this.character.abilities[this.abilityTypes.Lck].value = this.service.randomValue();
    }
 }
 </script>

@@ -16,7 +16,13 @@ export default class Character {
    }
 
    get abilityPoints(): number {
-      return 430 - this.abilities.map((x) => x.value).reduce((a, b) => a + +b);
+      return (
+         430 -
+         this.abilities
+            .filter((x) => x.id !== this.abilityTypes.Lck)
+            .map((x) => x.value)
+            .reduce((a, b) => a + +b)
+      );
    }
 
    get maxHealth(): number {
