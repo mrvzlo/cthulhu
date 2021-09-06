@@ -1,0 +1,10 @@
+<svg viewBox="0 1 10 30" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <line y2="2" x2="10" y1="2" x1="0" stroke="#1b5252" fill="none"/>
+  <line y2="7" x2="10" y1="7" x1="0" stroke="#1b5252" fill="none"/>
+  <line y2="12" x2="10" y1="12" x1="0" stroke="#1b5252" fill="none"/>
+  <line y2="17" x2="10" y1="17" x1="0" stroke="#1b5252" fill="none"/>
+  <line y2="22" x2="10" y1="22" x1="0" stroke="#1b5252" fill="none"/>
+  <line y2="27" x2="10" y1="27" x1="0" stroke="#1b5252" fill="none"/>
+ </g>
+</svg>
