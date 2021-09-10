@@ -7,8 +7,15 @@
 .btn-spiked {
    border-left-width: 5px;
    border-right-width: 5px;
+   padding-left: 0;
+   padding-right: 0;
    position: relative;
 
+   > * {
+      width: 200px;
+   }
+
+   &:hover,
    &:active,
    &:focus {
       border-left-width: 1px;

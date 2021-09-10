@@ -1,18 +1,18 @@
 .wave {
    --speed: 20s;
-   height: 100px;
    img {
       max-height: 100px;
-      position: absolute;
       bottom: 0;
       width: 102%;
       margin-bottom: -1px;
    }
    .left {
+      position: relative;
       animation: scroll-left var(--speed) infinite linear;
    }
 
    .right {
+      position: absolute;
       animation: scroll-right var(--speed) infinite linear;
    }
 }

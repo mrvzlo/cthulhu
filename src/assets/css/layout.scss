@@ -20,3 +20,42 @@
 .fill-primary {
    fill: $primary;
 }
+
+.home-animation {
+   .fas {
+      opacity: 0;
+   }
+
+   &.cursed .fa-eye {
+      opacity: 1;
+   }
+
+   &:not(.cursed) .fa-home {
+      opacity: 1;
+   }
+}
+
+h4 {
+   font-weight: bold;
+   margin-bottom: 10px;
+}
+
+ol {
+   li {
+      margin: 10px 16px 0;
+
+      &::marker {
+         font-weight: bold;
+      }
+      &:first-child {
+         margin-top: 0;
+      }
+   }
+
+   padding: 0;
+   margin-bottom: 10px;
+}
+
+p {
+   margin-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 <template>
    <div class="h1">Создание персонажа</div>
-   <div class="d-flex justify-content-between mt-3">
+   <div class="d-flex justify-content-between mt-2">
       <div class="w-50px"></div>
       <div class="fs-2">Набор атрибутов</div>
       <div class="w-50px">
