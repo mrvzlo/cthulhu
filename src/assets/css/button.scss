@@ -67,3 +67,17 @@
    border-bottom-left-radius: 0;
    border-bottom-right-radius: 0;
 }
+
+.home-animation {
+   .fas {
+      opacity: 0;
+   }
+
+   &.cursed .fa-eye {
+      opacity: 1;
+   }
+
+   &:not(.cursed) .fa-home {
+      opacity: 1;
+   }
+}

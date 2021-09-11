@@ -3,24 +3,18 @@
    <div class="fs-2 mt-2">Сборник правил</div>
 
    <div class="mt-4 text-center">
-      <div v-on:click="delayedLink('rules')" class="btn btn-primary btn-spiked mt-3">
-         <div>Основные правила</div>
-      </div>
-      <br />
-      <div v-on:click="delayedLink('character')" class="btn btn-primary btn-spiked mt-3">
-         <div>Создание персонажа</div>
-      </div>
+      <delayed-link :route="'character'" class="btn btn-primary btn-spiked mt-3">Создание персонажа </delayed-link>
    </div>
 
    <div class="position-absolute left-border-text start-0 op-01 h5">Позволь мне тебя напугать</div>
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component';
+import DelayedLink from './shared/delayed-link.vue';
 
-export default class Home extends Vue {
-   delayedLink(name: string): void {
-      setTimeout(() => this.$router.push({ name: name }), 200);
-   }
-}
+@Options({
+   components: { DelayedLink },
+})
+export default class Home extends Vue {}
 </script>
