@@ -1,6 +1,5 @@
 <template>
    <div class="h1">Зов ктулху 7 издание</div>
-   <div class="fs-2 mt-2">Сборник правил</div>
 
    <div class="mt-4 text-center">
       <delayed-link :route="'character'" class="btn btn-primary btn-spiked mt-3">Создание персонажа </delayed-link>

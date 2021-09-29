@@ -1,0 +1,11 @@
+[
+   {
+      "id": 1,
+      "fromAbility": 0,
+      "description": "",
+      "name": "Средства",
+      "min": 0,
+      "required": true,
+      "type": 1
+   }
+]

@@ -1,5 +1,4 @@
 <template>
-   <div class="h1">Создание персонажа</div>
    <div class="d-flex justify-content-between mt-2">
       <div class="w-50px"></div>
       <div class="fs-2">Набор атрибутов</div>
@@ -89,12 +88,17 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { Options, Vue, prop } from 'vue-class-component';
 import AbilityService from './services/ability.service';
 import Character from './models/character';
 import Modal from '@/views/shared/modal.vue';
 import AbilityList from './ability-list.vue';
 import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
+import { CreationSteps } from './models/creation-steps';
+
+class Props {
+   character: Character = prop({ required: true });
+}
 
 @Options({
    components: { Modal, AbilityList },
@@ -107,10 +111,9 @@ import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
       },
    },
 })
-export default class Abilities extends Vue {
+export default class Abilities extends Vue.with(Props) {
    service = new AbilityService();
    abilityTypes = AbilitiesEnum;
-   character = new Character();
    picked = -1;
    tab = 0;
 
@@ -124,7 +127,7 @@ export default class Abilities extends Vue {
 
    apply(ability: number): void {
       if (this.picked < 0) return;
-      this.character.abilities[ability].value = this.service.choice[this.picked];
+      this.$props.character.abilities[ability].value = this.service.choice[this.picked];
       this.service.remove(this.picked);
       this.picked = -1;
    }
@@ -153,6 +156,7 @@ export default class Abilities extends Vue {
 
    done(): void {
       if (!this.manual) this.character.abilities[this.abilityTypes.Lck].value = this.service.randomValue();
+      this.character.status++;
    }
 }
 </script>

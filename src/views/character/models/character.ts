@@ -2,10 +2,12 @@ import AbilityService from '../services/ability.service';
 import AbilityInterface from '@/data-layer/abilities/ability.interface';
 import Ability from './ability';
 import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
+import { CreationSteps } from './creation-steps';
 
 export default class Character {
    abilities: Ability[] = [];
    abilityTypes = AbilitiesEnum;
+   status = CreationSteps.Abilities;
 
    constructor() {
       const service = new AbilityService();

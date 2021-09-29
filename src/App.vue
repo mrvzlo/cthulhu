@@ -4,18 +4,18 @@
 
 <template>
    <div class="d-flex flex-column vh-100 position-relative">
-      <div class="d-flex justify-content-between container px-0 my-1 text-center">
-         <div class="w-50px">
-            <router-link :to="{ path: '/' }" :class="'btn btn-primary m-auto home-animation ' + (cursed ? 'cursed' : '')" v-on:click="curse">
+      <div class="d-flex justify-content-between container px-0 mb-1 text-center">
+         <drop-button>
+            <router-link :to="{ path: '/' }" :class="'m-auto btn btn-primary home-animation ' + (cursed ? 'cursed' : '')" v-on:click="curse">
                <i class="fas fa-home fa-fw position-absolute"></i>
                <i class="fas fa-eye fa-fw"></i>
             </router-link>
-         </div>
-         <div class="w-50px">
-            <a class="btn btn-primary m-auto" data-bs-toggle="collapse" data-bs-target="#menu">
+         </drop-button>
+         <drop-button>
+            <a class="m-auto btn btn-primary" data-bs-toggle="collapse" data-bs-target="#menu">
                <i class="fas fa-eye fa-fw"></i>
             </a>
-         </div>
+         </drop-button>
       </div>
       <div class="flex-grow-1 text-center container px-0 mb-2">
          <router-view />
@@ -36,8 +36,12 @@
 </template>
 
 <script lang="ts">
-import { Vue } from 'vue-class-component';
+import { Vue, Options } from 'vue-class-component';
+import DropButton from './views/shared/drop-button.vue';
 
+@Options({
+   components: { DropButton },
+})
 export default class App extends Vue {
    cursed = false;
 
