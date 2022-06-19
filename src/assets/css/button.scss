@@ -82,6 +82,28 @@
    }
 }
 
-.btn-drop .btn {
-   border-radius: 50%;
+.btn-drop {
+   .btn {
+      border-radius: 50%;
+   }
+}
+
+.btn-drop-block {
+   height: 55px;
+   &:hover {
+      > *:first-child {
+         animation-name: grow;
+         animation-duration: 0.2s;
+         animation-fill-mode: forwards;
+      }
+   }
+}
+
+@keyframes grow {
+   from {
+      line-height: 150%;
+   }
+   to {
+      line-height: 180%;
+   }
 }

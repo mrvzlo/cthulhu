@@ -1,7 +1,11 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/home.vue';
 import CharacterInfo from '../views/character/character.vue';
-import SaveLoad from '../views/character/save-load.vue';
+import Concept from '../views/concept/concept.vue';
+import Progress from '../views/features/progress.vue';
+import Mental from '../views/features/mental.vue';
+import Fight from '../views/features/fight.vue';
+import Alignment from '../views/features/alignment.vue';
 
 const routes: Array<RouteRecordRaw> = [
    {
@@ -15,9 +19,29 @@ const routes: Array<RouteRecordRaw> = [
       component: CharacterInfo,
    },
    {
-      path: '/saveload',
-      name: 'saveload',
-      component: SaveLoad,
+      path: '/concept',
+      name: 'concept',
+      component: Concept,
+   },
+   {
+      path: '/progress',
+      name: 'progress',
+      component: Progress,
+   },
+   {
+      path: '/sanity',
+      name: 'sanity',
+      component: Mental,
+   },
+   {
+      path: '/fight',
+      name: 'fight',
+      component: Fight,
+   },
+   {
+      path: '/alignment',
+      name: 'alignment',
+      component: Alignment,
    },
 ];
 

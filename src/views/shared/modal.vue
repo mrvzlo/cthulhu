@@ -1,5 +1,5 @@
 <template>
-   <div class="modal fade" :id="id">
+   <div class="modal" :id="id">
       <div :class="'modal-dialog modal-dialog-centered ' + specificClass">
          <div class="modal-content">
             <div class="modal-header text-center py-2">

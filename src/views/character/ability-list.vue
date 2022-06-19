@@ -1,6 +1,6 @@
 <template>
    <div class="row mt-3 mx-2 justify-content-center">
-      <div class="col-lg col-md-3 col-4 mb-2 d-grid px-2" v-for="ability in list" v-bind:key="ability">
+      <div class="col-lg col-4 mb-2 d-grid px-2 ability-box" v-for="ability in list" v-bind:key="ability">
          <div class="d-flex justify-content-between">
             <div class="fs-4 align-self-center lh-1">{{ ability.short }}</div>
             <button

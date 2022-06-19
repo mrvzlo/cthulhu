@@ -27,8 +27,9 @@
             <img src="~@/assets/images/wave.svg" alt="wave" class="right" />
          </div>
          <div class="collapse bg-primary" id="menu">
-            <div class="p-0 container">
+            <div class="p-0 container" data-bs-toggle="collapse" data-bs-target="#menu">
                <router-link :to="{ path: '/' }" class="nav-link unsure">Домой</router-link>
+               <div class="text-secondary text-center px-2">Система правил настольной ролевой игры основана на дополнениях к игре Зов Ктулху 7.</div>
             </div>
          </div>
       </div>

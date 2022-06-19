@@ -1,7 +1,9 @@
 <template>
    <div class="h1">Создание персонажа</div>
-   <ability-choice :character="character" v-if="character.status === creationSteps.Abilities" />
-   <skill-choice :character="character" v-if="character.status === creationSteps.Skills" />
+   <template v-if="character">
+      <ability-choice :character="character" v-if="character.status === creationSteps.Abilities" />
+      <skill-choice :character="character" v-if="character.status === creationSteps.Skills" />
+   </template>
 </template>
 
 <script lang="ts">
@@ -17,9 +19,5 @@ import { CreationSteps } from './models/creation-steps';
 export default class CharacterInfo extends Vue {
    character = new Character();
    creationSteps = CreationSteps;
-
-   created() {
-      this.$router.push({ name: 'saveload' });
-   }
 }
 </script>
