@@ -98,6 +98,7 @@
 </template>
 
 <script lang="ts">
+import SaveService from '@/data-layer/saving/saving.service';
 import { SkillType } from '@/data-layer/skills/skill-type.enum';
 import BootstrapHelper from '@/helpers/bootstrap-helper';
 import { Modal } from 'bootstrap';
@@ -111,6 +112,7 @@ import Wealth from './wealth.vue';
 
 class Props {
    character: Character = prop({ required: true });
+   saveService: SaveService<Character> = prop({ required: true });
 }
 
 @Options({
@@ -134,16 +136,20 @@ export default class Skills extends Vue.with(Props) {
 
    mounted() {
       new BootstrapHelper().init();
+      if (this.character.status === CreationStep.CommonSkills) {
+         this.skillPointsManager.addBonus(this.character);
+      }
    }
 
    done(): void {
       this.character.status++;
-      if (this.character.status < this.creationStep.Done) {
+      if (this.character.status < CreationStep.Done) {
          this.skillPointsManager.addBonus(this.character);
       } else {
          this.character.applyBonuses();
       }
       this.isDone = false;
+      this.saveService.setData(this.character);
    }
 
    mark(id: number, type: SkillProficiencyType) {

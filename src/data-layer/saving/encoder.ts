@@ -1,32 +1,28 @@
 import LZUTF8 from 'lzutf8/build/production/lzutf8';
 
-export default class Encoder {
-   encode256(src: any): string {
-      const binary = LZUTF8.encodeUTF8(src);
+export default class Encoder<T> {
+   encode256(src: T): string {
+      const string = JSON.stringify(src);
+      const binary = LZUTF8.encodeUTF8(string);
       const encoded = LZUTF8.encodeStorageBinaryString(binary);
       return encoded;
    }
 
    decode256(src: string, parentObject: any) {
       const binary = LZUTF8.decodeStorageBinaryString(src);
-      const string: any = LZUTF8.decodeUTF8(binary);
-      const parsed = this.parse(string, parentObject);
+      const string = LZUTF8.decodeUTF8(binary);
+      const data = JSON.parse(string);
+      const parsed = this.parse(data, parentObject);
       return parsed;
    }
 
-   parse(data: any, object: any): any {
-      if (typeof data !== 'object' || data === null) {
-         return data;
-      }
+   parse(source: any, destination: any): any {
+      if (typeof source !== 'object' || source === null) return source;
 
-      while (Array.isArray(data) && object.length < data.length) {
-         object.pushNew();
-      }
-
-      Object.keys(data).forEach((key) => {
-         if (key == 'ctor') return;
-         object[key] = this.parse(data[key], object[key]);
+      Object.keys(source).forEach((key) => {
+         if (source[key] == null && !destination[key]) return;
+         destination[key] = this.parse(source[key], destination[key]);
       });
-      return object;
+      return destination;
    }
 }

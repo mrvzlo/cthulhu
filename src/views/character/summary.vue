@@ -4,11 +4,6 @@
       <a class="text-decoration-none" href="#/alignment">принципы</a>, окружение, <a class="text-decoration-none" href="#/aging">жизненный путь</a> и
       снаряжение. А потом перенесите это на <a href="/character-sheet.pdf" class="text-decoration-none" target="_blank">лист</a>.
    </div>
-   <div>
-      <i class="fas fa-exclamation-triangle"></i>
-      Сайт не сохраняет информацию о созданных персонажах
-      <i class="fas fa-exclamation-triangle"></i>
-   </div>
    <div class="row mt-5 mx-3">
       <div class="col-lg-4 col-12 text-start">
          <div class="d-flex mb-3">
@@ -74,20 +69,26 @@
          </template>
       </div>
    </div>
+   <div>
+      <div class="btn btn-danger px-5 my-4" v-on:click="deleteCharacter()">Создать заново</div>
+   </div>
 </template>
 
 <script lang="ts">
 import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
+import SaveService from '@/data-layer/saving/saving.service';
 import { SkillGroupType } from '@/data-layer/skills/skill-group-type.enum';
 import { SkillType } from '@/data-layer/skills/skill-type.enum';
 import { Options, prop, Vue } from 'vue-class-component';
 import ThreeLevelCheck from '../shared/three-level-check.vue';
 import Character from './models/character';
+import { CreationStep } from './models/creation-step';
 import AbilityService from './services/ability.service';
 import SkillService from './services/skill.service';
 
 class Props {
    character: Character = prop({ required: true });
+   saveService: SaveService<Character> = prop({ required: true });
 }
 @Options({ components: { ThreeLevelCheck } })
 export default class BuildSummary extends Vue.with(Props) {
@@ -104,6 +105,11 @@ export default class BuildSummary extends Vue.with(Props) {
 
    getSkills(group: number) {
       return Object.values(this.character.skills).filter((x) => x.group == group);
+   }
+
+   deleteCharacter() {
+      this.saveService.deleteSave();
+      this.character.status = CreationStep.Abilities;
    }
 }
 </script>

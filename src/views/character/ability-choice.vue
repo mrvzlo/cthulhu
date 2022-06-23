@@ -123,6 +123,7 @@
 
 <script lang="ts">
 import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
+import SaveService from '@/data-layer/saving/saving.service';
 import BootstrapHelper from '@/helpers/bootstrap-helper';
 import { Options, Vue, prop } from 'vue-class-component';
 import Modal from '../shared/modal.vue';
@@ -132,6 +133,7 @@ import AbilityService from './services/ability.service';
 
 class Props {
    character: Character = prop({ required: true });
+   saveService: SaveService<Character> = prop({ required: true });
 }
 
 @Options({
@@ -196,7 +198,10 @@ export default class Abilities extends Vue.with(Props) {
       const wait = this.manual ? 1 : 500;
       if (!this.manual) this.setLuck();
       this.updateDerivatives();
-      setTimeout(() => this.character.status++, wait);
+      setTimeout(() => {
+         this.character.status++;
+         this.saveService.setData(this.character);
+      }, wait);
    }
 
    updateDerivatives() {

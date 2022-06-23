@@ -1,38 +1,28 @@
 import Encoder from './encoder';
-import SaveData from './save-data';
 import SaveResponse from './save-response';
 
 export default class SaveService<T> {
    encoder = new Encoder();
 
-   async getAll(count: number): Promise<SaveData[]> {
-      const list = [];
-      for (let i = 0; i < count; i++) {
-         list.push(new SaveData(i));
-         await list[i].fillFields();
-      }
-      return list;
-   }
+   constructor(private key: string) {}
 
-   import(input: string, parentObject: T): SaveResponse<T> {
+   getData(parentObject: T): SaveResponse<T> {
       try {
-         const decoded = this.encoder.decode256(input, parentObject);
+         const saved = localStorage.getItem(this.key) ?? '';
+         const decoded = this.encoder.decode256(saved, parentObject);
+         if (!decoded) throw 'No data decoded';
          return new SaveResponse(decoded, true);
       } catch {
          return new SaveResponse(parentObject, false);
       }
    }
 
-   makeSave(obj: T, name: string, id: number) {
+   setData(obj: T) {
       const encoded = this.encoder.encode256(obj);
-      new SaveData(id).setData(encoded, name);
+      localStorage.setItem(this.key, encoded);
    }
 
-   deleteSave(id: number) {
-      new SaveData(id).deleteFile();
-   }
-
-   async getSaveData(id: number): Promise<string> {
-      return await new SaveData(id).getEncoded();
+   deleteSave() {
+      localStorage.removeItem(this.key);
    }
 }
