@@ -56,7 +56,7 @@ export default class App extends Vue {
 
    mounted() {
       this.resizeContent();
-      setTimeout(() => this.resizeContent(), 1);
+      setTimeout(() => this.resizeContent(), 10);
       window.addEventListener('resize', this.resizeContent);
    }
 

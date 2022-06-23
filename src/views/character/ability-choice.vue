@@ -80,23 +80,23 @@
             </button>
          </div>
          <div class="d-flex mb-1">
-            <span class="me-1 my-auto badge bg-dark w-35px">{{ Math.floor(character.abilities[abilityTypes.Agi].value / 2) }}</span>
-            <span class="align-middle me-2 flex-grow-1">Уклонение</span>
-            <button
-               class="btn btn-primary btn-sm py-0 px-1"
-               data-bs-toggle="popover"
-               data-bs-content="Навык отвечающий за способность уворачиваться от атак в ближнем бою."
-            >
-               <i class="fas fa-info fa-fw"></i>
-            </button>
-         </div>
-         <div class="d-flex mb-1">
             <span class="me-1 my-auto badge bg-dark w-35px">{{ character.build }}</span>
             <span class="align-middle me-2 flex-grow-1">Комплекция</span>
             <button
                class="btn btn-primary btn-sm py-0 px-1"
                data-bs-toggle="popover"
                data-bs-content="Общий объём мышечной массы, влияющий на бонус к урону в ближнем бою."
+            >
+               <i class="fas fa-info fa-fw"></i>
+            </button>
+         </div>
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ character.hobbies }}</span>
+            <span class="align-middle me-2 flex-grow-1">Хобби</span>
+            <button
+               class="btn btn-primary btn-sm py-0 px-1"
+               data-bs-toggle="popover"
+               data-bs-content="Количество навыков, которые можно изучить в качестве хобби."
             >
                <i class="fas fa-info fa-fw"></i>
             </button>

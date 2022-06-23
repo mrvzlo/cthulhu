@@ -12,7 +12,7 @@ export default class Character {
    skills: Skill[] = [];
    abilityTypes = AbilitiesEnum;
    status = CreationStep.Abilities;
-   private abilitiesSum = 430;
+   private readonly abilitiesSum = 430;
 
    constructor() {
       const abilities = new AbilityService().getAll();

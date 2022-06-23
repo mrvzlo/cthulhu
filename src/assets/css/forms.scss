@@ -3,7 +3,7 @@
    font-size: 80%;
 }
 
-.form-control {
+.form-control:not(.form-control-left) {
    text-align: center;
    text-align-last: center;
 }

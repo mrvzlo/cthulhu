@@ -286,7 +286,57 @@
       "description": "Выберите подходящее название для нового навыка",
       "name": "",
       "min": 0,
-      "group": 9,
+      "group": 8,
+      "type": 5
+   },
+   {
+      "id": 30,
+      "fromAbility": 0,
+      "abilityPart": 0,
+      "description": "Придумайте своё название для нового умения",
+      "name": "",
+      "min": 0,
+      "group": 1,
+      "type": 5
+   },
+   {
+      "id": 31,
+      "fromAbility": 0,
+      "abilityPart": 0,
+      "description": "Придумайте своё название для нового умения",
+      "name": "",
+      "min": 0,
+      "group": 2,
+      "type": 5
+   },
+   {
+      "id": 32,
+      "fromAbility": 0,
+      "abilityPart": 0,
+      "description": "Придумайте своё название для нового умения",
+      "name": "",
+      "min": 0,
+      "group": 3,
+      "type": 5
+   },
+   {
+      "id": 33,
+      "fromAbility": 0,
+      "abilityPart": 0,
+      "description": "Придумайте своё название для нового умения",
+      "name": "",
+      "min": 0,
+      "group": 4,
+      "type": 5
+   },
+   {
+      "id": 34,
+      "fromAbility": 0,
+      "abilityPart": 0,
+      "description": "Придумайте своё название для нового умения",
+      "name": "",
+      "min": 0,
+      "group": 5,
       "type": 5
    }
 ]

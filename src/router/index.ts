@@ -6,6 +6,8 @@ import Progress from '../views/features/progress.vue';
 import Mental from '../views/features/mental.vue';
 import Fight from '../views/features/fight.vue';
 import Alignment from '../views/features/alignment.vue';
+import Aging from '../views/features/aging.vue';
+import Archetypes from '../views/features/archetypes.vue';
 
 const routes: Array<RouteRecordRaw> = [
    {
@@ -42,6 +44,16 @@ const routes: Array<RouteRecordRaw> = [
       path: '/alignment',
       name: 'alignment',
       component: Alignment,
+   },
+   {
+      path: '/aging',
+      name: 'aging',
+      component: Aging,
+   },
+   {
+      path: '/archetypes',
+      name: 'archetypes',
+      component: Archetypes,
    },
 ];
 

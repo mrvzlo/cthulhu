@@ -14,7 +14,7 @@ export default class SkillService {
    getImportant = (): SkillInterface[] => this.getAll(SKILLS.filter((x) => x.type == SkillType.Important));
 
    getGroupped(): SkillGroup[] {
-      const common = SKILLS.filter((x) => x.type === SkillType.Common);
+      const common = SKILLS.filter((x) => x.type === SkillType.Common || x.type == SkillType.Extra);
       const commonGroups = GROUPS.filter((x) => x.id !== SkillGroupType.Special);
       const result: SkillGroup[] = Object.assign({}, ...commonGroups.map((x: SkillGroupInterface) => ({ [x.id]: new SkillGroup(x) })));
       common.forEach((x) => result[x.group].skills.push(x));
