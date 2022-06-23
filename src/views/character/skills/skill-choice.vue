@@ -138,8 +138,10 @@ export default class Skills extends Vue.with(Props) {
 
    done(): void {
       this.character.status++;
-      if (this.character.status > this.creationStep.ImportantSkills) {
+      if (this.character.status < this.creationStep.Done) {
          this.skillPointsManager.addBonus(this.character);
+      } else {
+         this.character.applyBonuses();
       }
       this.isDone = false;
    }

@@ -195,7 +195,12 @@ export default class Abilities extends Vue.with(Props) {
    done(): void {
       const wait = this.manual ? 1 : 500;
       if (!this.manual) this.setLuck();
+      this.updateDerivatives();
       setTimeout(() => this.character.status++, wait);
+   }
+
+   updateDerivatives() {
+      this.character.updateDerivatives();
    }
 
    setLuck() {

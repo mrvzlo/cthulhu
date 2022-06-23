@@ -23,7 +23,7 @@ export default class Skill {
    }
 
    acceptBonus() {
-      this.value += this.bonus;
+      this.value -= -this.bonus;
       this.clearBonus();
    }
 

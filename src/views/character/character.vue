@@ -23,8 +23,7 @@ export default class CharacterInfo extends Vue {
    creationStep = CreationStep;
 
    created() {
-      console.log(this.character.abilities);
-      this.character.status = CreationStep.Done;
+      this.character.status = CreationStep.ImportantSkills;
    }
 }
 </script>

@@ -1,6 +1,10 @@
 .form-control-small {
    padding: 1px;
    font-size: 80%;
+
+   &.small {
+      font-size: 11px;
+   }
 }
 
 .form-control:not(.form-control-left) {

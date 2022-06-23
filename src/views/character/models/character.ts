@@ -25,6 +25,18 @@ export default class Character {
       });
    }
 
+   updateDerivatives() {
+      const skills = new SkillService().getAll();
+      Object.values(skills).forEach((x: SkillInterface) => {
+         if (x.fromAbility === 0) return;
+         this.skills[x.id].value = this.abilities[x.fromAbility].value * x.abilityPart;
+      });
+   }
+
+   applyBonuses = () => {
+      Object.values(this.skills).forEach((x) => x.acceptBonus());
+   };
+
    get abilityPoints(): number {
       return (
          this.abilitiesSum -

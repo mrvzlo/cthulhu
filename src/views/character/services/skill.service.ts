@@ -11,6 +11,8 @@ export default class SkillService {
       return this.getAll()[id];
    }
 
+   getGroups = (): SkillGroup[] => Object.assign({}, ...GROUPS.map((x: SkillGroupInterface) => ({ [x.id]: new SkillGroup(x) })));
+
    getImportant = (): SkillInterface[] => this.getAll(SKILLS.filter((x) => x.type == SkillType.Important));
 
    getGroupped(): SkillGroup[] {
