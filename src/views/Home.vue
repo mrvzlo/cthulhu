@@ -19,7 +19,7 @@
       <delayed-link :route="'fight'" class="btn btn-primary btn-spiked mt-3">Ведение боя</delayed-link>
       <br />
       <delayed-link class="btn btn-primary btn-spiked mt-3">
-         <a href="/character-sheet.pdf" class="text-white text-decoration-none" target="_blank">Лист персонажа</a>
+         <a href="cthulhu/character-sheet.pdf" class="text-white text-decoration-none" target="_blank">Лист персонажа</a>
       </delayed-link>
    </div>
    <div class="small text-start px-1 mt-auto mt-5 pt-5">
