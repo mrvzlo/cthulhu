@@ -17,6 +17,10 @@
    margin-bottom: 50px;
 }
 
+a {
+   text-decoration: none;
+}
+
 .modal-sm {
    max-width: 300px;
    margin: auto;
@@ -39,6 +43,9 @@ body {
    }
    &.fall {
       height: 0;
+   }
+   &.first-load {
+      height: 90vh;
    }
    overflow: hidden;
    transition: all 0.5s;

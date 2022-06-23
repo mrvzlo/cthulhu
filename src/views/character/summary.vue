@@ -1,8 +1,8 @@
 <template>
    <div>
-      Теперь придумайте имя персонажа, его <a class="text-decoration-none" href="#/archetypes">историю</a>,
-      <a class="text-decoration-none" href="#/alignment">принципы</a>, окружение, <a class="text-decoration-none" href="#/aging">жизненный путь</a> и
-      снаряжение. А потом перенесите это на <a href="cthulhu/character-sheet.pdf" class="text-decoration-none" target="_blank">лист</a>.
+      Теперь придумайте имя персонажа, его <a class="" href="#/archetypes">историю</a>, <a class="" href="#/alignment">принципы</a>, окружение,
+      <a class="" href="#/aging">жизненный путь</a> и снаряжение. А потом перенесите это на
+      <a href="cthulhu/character-sheet.pdf" class="" target="_blank">лист</a>.
    </div>
    <div class="row mt-5 mx-3">
       <div class="col-lg-4 col-12 text-start">

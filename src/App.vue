@@ -32,9 +32,12 @@
             <img src="~@/assets/images/wave.svg" alt="wave" class="left" />
             <img src="~@/assets/images/wave.svg" alt="wave" class="right" />
          </div>
-         <div :class="'bg-primary d-flex ' + (openWave ? 'show' : 'fall')" id="menu">
-            <div class="p-0 container my-auto" v-on:click="openWave = !openWave">
-               <div class="text-secondary text-start px-2"></div>
+         <div :class="'bg-primary d-flex ' + (openWave ? 'show' : 'fall') + (cached ? '' : ' first-load')" id="menu">
+            <div class="container my-auto d-flex text-center" v-on:click="openWave = !openWave">
+               <div></div>
+               <a class="unsure text-secondary me-lg-5 me-3" href="https://twitter.com/andrejevve">Twitter</a>
+               <a class="unsure text-secondary me-lg-5 me-3" href="https://t.me/andrejevve">Telegram</a>
+               <div class="ms-auto text-end text-secondary">made by AVE</div>
             </div>
          </div>
       </div>
@@ -53,11 +56,21 @@ export default class App extends Vue {
    openWave = false;
    headerHeight = 0;
    footerHeight = 0;
+   cached = true;
+
+   created() {
+      this.cached = !!this.$cookies.get('cached');
+   }
 
    mounted() {
-      this.resizeContent();
-      setTimeout(() => this.resizeContent(), 10);
-      window.addEventListener('resize', this.resizeContent);
+      if (!this.cached)
+         setTimeout(() => {
+            this.cached = true;
+            this.$cookies.set('cached', this.cached);
+         }, 1000);
+
+      new ResizeObserver(() => this.resizeContent()).observe(document.getElementById('header')!);
+      new ResizeObserver(() => this.resizeContent()).observe(document.getElementById('footer')!);
    }
 
    resizeContent() {
