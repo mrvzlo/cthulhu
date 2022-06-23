@@ -1,23 +1,28 @@
 <template>
    <div class="h1">Создание персонажа</div>
    <template v-if="character">
-      <ability-choice :character="character" v-if="character.status === creationSteps.Abilities" />
-      <skill-choice :character="character" v-if="character.status === creationSteps.Skills" />
+      <abilities :character="character" v-if="character.status === creationStep.Abilities" />
+      <skills :character="character" v-if="character.status > creationStep.Abilities && character.status < creationStep.Done" />
    </template>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import Abilities from './ability-choice.vue';
 import Character from './models/character';
-import AbilityChoice from './ability-choice.vue';
-import SkillChoice from './skill-choice.vue';
-import { CreationSteps } from './models/creation-steps';
+import { CreationStep } from './models/creation-step';
+import Skills from './skills/skill-choice.vue';
 
 @Options({
-   components: { AbilityChoice, SkillChoice },
+   components: { Abilities, Skills },
 })
 export default class CharacterInfo extends Vue {
    character = new Character();
-   creationSteps = CreationSteps;
+   creationStep = CreationStep;
+
+   created() {
+      this.character.abilities.forEach((x) => (x.value = 60));
+      this.character.status = CreationStep.ImportantSkills;
+   }
 }
 </script>

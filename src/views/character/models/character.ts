@@ -1,25 +1,33 @@
-import AbilityService from '../services/ability.service';
-import AbilityInterface from '@/data-layer/abilities/ability.interface';
-import Ability from './ability';
 import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
-import { CreationSteps } from './creation-steps';
+import AbilityInterface from '@/data-layer/abilities/ability.interface';
+import SkillInterface from '@/data-layer/skills/skill.interface';
+import AbilityService from '../services/ability.service';
+import SkillService from '../services/skill.service';
+import Ability from './ability';
+import { CreationStep } from './creation-step';
+import Skill from './skill';
 
 export default class Character {
    abilities: Ability[] = [];
+   skills: Skill[] = [];
    abilityTypes = AbilitiesEnum;
-   status = CreationSteps.Abilities;
+   status = CreationStep.Abilities;
+   private abilitiesSum = 430;
 
    constructor() {
-      const service = new AbilityService();
-      const list = service.getAll();
-      Object.values(list).forEach((x: AbilityInterface) => {
+      const abilities = new AbilityService().getAll();
+      Object.values(abilities).forEach((x: AbilityInterface) => {
          this.abilities[x.id] = new Ability(x);
+      });
+      const skills = new SkillService().getAll();
+      Object.values(skills).forEach((x: SkillInterface) => {
+         this.skills[x.id] = new Skill(x);
       });
    }
 
    get abilityPoints(): number {
       return (
-         430 -
+         this.abilitiesSum -
          this.abilities
             .filter((x) => x.id !== this.abilityTypes.Lck)
             .map((x) => x.value)
@@ -45,5 +53,9 @@ export default class Character {
       if (this.abilities[this.abilityTypes.Siz].value <= this.abilities[this.abilityTypes.Str].value) speed--;
       if (this.abilities[this.abilityTypes.Siz].value <= this.abilities[this.abilityTypes.Agi].value) speed--;
       return speed;
+   }
+
+   get hobbies(): number {
+      return Math.max(0, this.abilities[this.abilityTypes.Int].value / 10 - 1);
    }
 }

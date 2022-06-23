@@ -14,9 +14,8 @@ import { Options, Vue } from 'vue-class-component';
 })
 export default class DelayedLink extends Vue {
    delayedLink(route: string): void {
-      setTimeout(() => {
-         this.$router.push({ path: `/${route}` });
-      }, 200);
+      if (!route) return;
+      setTimeout(() => this.$router.push({ path: `/${route}` }), 200);
    }
 }
 </script>

@@ -5,9 +5,8 @@
             <div class="fs-4 align-self-center lh-1">{{ ability.short }}</div>
             <button
                class="btn btn-primary btn-sm py-0 px-1 border-bottom-square"
-               data-bs-toggle="modal"
-               data-bs-target="#abilityInfo"
-               v-on:click="showDescription(ability)"
+               data-bs-toggle="popover"
+               :data-bs-content="showDescription(ability)"
             >
                <i class="fas fa-info fa-fw"></i>
             </button>
@@ -29,16 +28,13 @@
          </div>
       </div>
    </div>
-
-   <modal :modalTitle="modalTitle" :id="'abilityInfo'">
-      <div v-html="modalText" class="py-2 px-3"></div>
-   </modal>
 </template>
 
 <script lang="ts">
 import AbilityInterface from '@/data-layer/abilities/ability.interface';
+import BootstrapHelper from '@/helpers/bootstrap-helper';
+import { Modal } from 'bootstrap';
 import { Options, Vue } from 'vue-class-component';
-import Modal from '@/views/shared/modal.vue';
 import Character from './models/character';
 
 @Options({
@@ -49,6 +45,10 @@ export default class AbilityList extends Vue {
    character = new Character();
    modalText = '';
    modalTitle = '';
+
+   mounted() {
+      new BootstrapHelper().init();
+   }
 
    div(ability: number, division: number): number {
       const result = this.character.abilities[ability].value / division;
@@ -62,9 +62,8 @@ export default class AbilityList extends Vue {
       this.character.abilities[ability.id].value = value;
    }
 
-   showDescription(ability: AbilityInterface): void {
-      this.modalTitle = ability.name;
-      this.modalText = ability.description;
+   showDescription(ability: AbilityInterface): string {
+      return `<b>${ability.name}</b><br>${ability.description}`;
    }
 }
 </script>

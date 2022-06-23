@@ -3,8 +3,9 @@
 </style>
 
 <template>
-   <div class="d-flex flex-column vh-100 position-relative">
-      <div class="d-flex justify-content-between container px-0 mb-1 text-center">
+   <div class="min-vh-100 position-relative d-flex flex-column">
+      <div class="position-fixed left-border-text start-0 top-50 op-1 h5 translate-middle-y">Позволь мне тебя напугать</div>
+      <div class="d-flex justify-content-between container px-0 text-center position-fixed start-50 translate-middle-x" id="header">
          <drop-button>
             <router-link :to="{ path: '/' }" :class="'m-auto btn btn-primary home-animation ' + (cursed ? 'cursed' : '')" v-on:click="curse">
                <i class="fas fa-home fa-fw position-absolute"></i>
@@ -12,24 +13,28 @@
             </router-link>
          </drop-button>
          <drop-button>
-            <a class="m-auto btn btn-primary" data-bs-toggle="collapse" data-bs-target="#menu">
+            <a class="m-auto btn btn-primary" v-on:click="openWave = !openWave">
                <i class="fas fa-eye fa-fw"></i>
             </a>
          </drop-button>
       </div>
-      <div class="flex-grow-1 text-center container px-0 mb-2">
+
+      <div
+         class="flex-grow-1 text-center container px-0 py-2 d-flex flex-column"
+         id="content"
+         :style="'margin-top:' + headerHeight + 'px;margin-bottom:' + footerHeight + 'px'"
+      >
          <router-view />
       </div>
 
-      <div class="w-100 z-index-10k">
+      <div class="w-100 z-index-10k position-fixed bottom-0" id="footer">
          <div class="position-relative wave overflow-hidden">
             <img src="~@/assets/images/wave.svg" alt="wave" class="left" />
             <img src="~@/assets/images/wave.svg" alt="wave" class="right" />
          </div>
-         <div class="collapse bg-primary" id="menu">
-            <div class="p-0 container" data-bs-toggle="collapse" data-bs-target="#menu">
-               <router-link :to="{ path: '/' }" class="nav-link unsure">Домой</router-link>
-               <div class="text-secondary text-center px-2">Система правил настольной ролевой игры основана на дополнениях к игре Зов Ктулху 7.</div>
+         <div :class="'bg-primary d-flex ' + (openWave ? 'show' : 'fall')" id="menu">
+            <div class="p-0 container my-auto" v-on:click="openWave = !openWave">
+               <div class="text-secondary text-start px-2"></div>
             </div>
          </div>
       </div>
@@ -45,9 +50,25 @@ import DropButton from './views/shared/drop-button.vue';
 })
 export default class App extends Vue {
    cursed = false;
+   openWave = false;
+   headerHeight = 0;
+   footerHeight = 0;
+
+   mounted() {
+      this.resizeContent();
+      setTimeout(() => this.resizeContent(), 1);
+      window.addEventListener('resize', this.resizeContent);
+   }
+
+   resizeContent() {
+      this.headerHeight = document.getElementById('header')?.clientHeight ?? 0;
+      this.footerHeight = document.getElementById('footer')?.clientHeight ?? 0;
+   }
 
    curse(): void {
-      this.cursed = !this.cursed && Math.random() < 1 / 6;
+      if (Math.random() < 1 / 2) return;
+      this.cursed = true;
+      setTimeout(() => (this.cursed = false), 3000);
    }
 }
 </script>

@@ -30,4 +30,25 @@ body {
    background: url('~@/assets/images/logo.svg');
    background-position: center;
    background-repeat: no-repeat;
+   overflow: overlay;
+}
+
+#menu {
+   &.show {
+      height: 69px;
+   }
+   &.fall {
+      height: 0;
+   }
+   overflow: hidden;
+   transition: all 0.5s;
+}
+
+::-webkit-scrollbar {
+   width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+   background: #888;
+   border-radius: 10%;
 }

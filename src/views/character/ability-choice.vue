@@ -9,7 +9,7 @@
       </div>
    </div>
 
-   <div class="btn-group px-3 mt-1">
+   <div class="btn-group px-3 mt-1 d-inline">
       <button :class="'btn w-100px px-1 btn-sm ' + (tab == 0 ? 'btn-primary' : 'btn-outline-primary')" v-on:click="setDefaultChoice()">
          Стандартный
       </button>
@@ -35,37 +35,71 @@
       <div v-if="character.abilityPoints < 0">Перебор {{ -character.abilityPoints }} очков</div>
    </div>
 
-   <div class="text-center mt-2">
-      <div class="text-start d-inline-block">
-         <div class="d-inline">
-            <span class="ms-3 me-1 badge bg-dark w-35px">{{ character.maxHealth }}</span>
-            <span class="align-middle">Очки здоровья</span>
+   <div class="text-start d-flex justify-content-center mt-2 flex-wrap">
+      <div class="px-3 w-250px">
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ character.maxHealth }}</span>
+            <span class="align-middle me-2 flex-grow-1">Очки здоровья</span>
+            <button
+               class="btn btn-primary btn-sm py-0 px-1"
+               data-bs-toggle="popover"
+               data-bs-content="Обозначение жизненных показателей персонажа. Потеря очков приводит к увечьям и даже к смерти."
+            >
+               <i class="fas fa-info fa-fw"></i>
+            </button>
          </div>
-         <br />
-         <div class="d-inline">
-            <span class="ms-3 me-1 badge bg-dark w-35px">{{ character.abilities[abilityTypes.Pow].value }}</span>
-            <span class="align-middle">Очки рассудка</span>
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ character.abilities[abilityTypes.Pow].value }}</span>
+            <span class="align-middle me-2 flex-grow-1">Очки рассудка</span>
+            <button
+               class="btn btn-primary btn-sm py-0 px-1"
+               data-bs-toggle="popover"
+               data-bs-content="Общий уровень самообладания и сознательности. Потеря очков приводит к психическим травмам."
+            >
+               <i class="fas fa-info fa-fw"></i>
+            </button>
          </div>
-         <br />
-         <div class="d-inline">
-            <span class="ms-3 me-1 badge bg-dark w-35px">{{ character.maxMana }}</span>
-            <span class="align-middle">Очки магии</span>
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ character.maxMana }}</span>
+            <span class="align-middle me-2 flex-grow-1">Очки магии</span>
+            <button class="btn btn-primary btn-sm py-0 px-1" data-bs-toggle="popover" data-bs-content="Очки позволяющие сотворять заклинания">
+               <i class="fas fa-info fa-fw"></i>
+            </button>
          </div>
       </div>
-      <div class="text-start d-inline-block">
-         <div class="d-inline">
-            <span class="ms-3 me-1 badge bg-dark w-35px">{{ character.speed }}</span>
-            <span class="align-middle">Скорость</span>
+      <div class="px-3 w-250px">
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ character.speed }}</span>
+            <span class="align-middle me-2 flex-grow-1">Скорость</span>
+            <button
+               class="btn btn-primary btn-sm py-0 px-1"
+               data-bs-toggle="popover"
+               data-bs-content="Расстояние в футах, которое персонаж может пройти за игровой раунд."
+            >
+               <i class="fas fa-info fa-fw"></i>
+            </button>
          </div>
-         <br />
-         <div class="d-inline">
-            <span class="ms-3 me-1 badge bg-dark w-35px">{{ Math.floor(character.abilities[abilityTypes.Agi].value / 2) }}</span>
-            <span class="align-middle">Уклонение</span>
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ Math.floor(character.abilities[abilityTypes.Agi].value / 2) }}</span>
+            <span class="align-middle me-2 flex-grow-1">Уклонение</span>
+            <button
+               class="btn btn-primary btn-sm py-0 px-1"
+               data-bs-toggle="popover"
+               data-bs-content="Навык отвечающий за способность уворачиваться от атак в ближнем бою."
+            >
+               <i class="fas fa-info fa-fw"></i>
+            </button>
          </div>
-         <br />
-         <div class="d-inline">
-            <span class="ms-3 me-1 badge bg-dark w-35px">{{ character.build }}</span>
-            <span class="align-middle">Комплекция</span>
+         <div class="d-flex mb-1">
+            <span class="me-1 my-auto badge bg-dark w-35px">{{ character.build }}</span>
+            <span class="align-middle me-2 flex-grow-1">Комплекция</span>
+            <button
+               class="btn btn-primary btn-sm py-0 px-1"
+               data-bs-toggle="popover"
+               data-bs-content="Общий объём мышечной массы, влияющий на бонус к урону в ближнем бою."
+            >
+               <i class="fas fa-info fa-fw"></i>
+            </button>
          </div>
       </div>
    </div>
@@ -88,13 +122,13 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue, prop } from 'vue-class-component';
-import AbilityService from './services/ability.service';
-import Character from './models/character';
-import Modal from '@/views/shared/modal.vue';
-import AbilityList from './ability-list.vue';
 import { AbilitiesEnum } from '@/data-layer/abilities/abilities.enum';
-import { CreationSteps } from './models/creation-steps';
+import BootstrapHelper from '@/helpers/bootstrap-helper';
+import { Options, Vue, prop } from 'vue-class-component';
+import Modal from '../shared/modal.vue';
+import AbilityList from './ability-list.vue';
+import Character from './models/character';
+import AbilityService from './services/ability.service';
 
 class Props {
    character: Character = prop({ required: true });
@@ -116,6 +150,10 @@ export default class Abilities extends Vue.with(Props) {
    abilityTypes = AbilitiesEnum;
    picked = -1;
    tab = 0;
+
+   mounted() {
+      new BootstrapHelper().init();
+   }
 
    get manual(): boolean {
       return this.tab === 2;
@@ -155,8 +193,13 @@ export default class Abilities extends Vue.with(Props) {
    }
 
    done(): void {
-      if (!this.manual) this.character.abilities[this.abilityTypes.Lck].value = this.service.randomValue();
-      this.character.status++;
+      const wait = this.manual ? 1 : 500;
+      if (!this.manual) this.setLuck();
+      setTimeout(() => this.character.status++, wait);
+   }
+
+   setLuck() {
+      this.character.abilities[this.abilityTypes.Lck].value = this.service.randomValue();
    }
 }
 </script>
