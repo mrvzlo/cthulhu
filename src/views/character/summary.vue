@@ -81,8 +81,8 @@ import { SkillGroupType } from '@/data-layer/skills/skill-group-type.enum';
 import { SkillType } from '@/data-layer/skills/skill-type.enum';
 import { Options, prop, Vue } from 'vue-class-component';
 import ThreeLevelCheck from '../shared/three-level-check.vue';
+import CharacterInfo from './character.vue';
 import Character from './models/character';
-import { CreationStep } from './models/creation-step';
 import AbilityService from './services/ability.service';
 import SkillService from './services/skill.service';
 
@@ -108,8 +108,7 @@ export default class BuildSummary extends Vue.with(Props) {
    }
 
    deleteCharacter() {
-      this.saveService.deleteSave();
-      this.character.status = CreationStep.Abilities;
+      (this.$parent! as CharacterInfo).clear();
    }
 }
 </script>

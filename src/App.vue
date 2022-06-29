@@ -5,9 +5,9 @@
 <template>
    <div class="min-vh-100 position-relative d-flex flex-column">
       <div class="position-fixed left-border-text start-0 top-50 op-1 h5 translate-middle-y">Позволь мне тебя напугать</div>
-      <div class="d-flex justify-content-between container px-0 text-center position-fixed start-50 translate-middle-x" id="header">
+      <div class="d-flex z-index-10k justify-content-between container px-0 text-center position-fixed start-50 translate-middle-x" id="header">
          <drop-button>
-            <router-link :to="{ path: '/' }" :class="'m-auto btn btn-primary home-animation ' + (cursed ? 'cursed' : '')" v-on:click="curse">
+            <router-link :to="{ path: '/' }" :class="'m-auto btn btn-primary home-animation ' + (cursed ? 'cursed' : '')">
                <i class="fas fa-home fa-fw position-absolute"></i>
                <i class="fas fa-eye fa-fw"></i>
             </router-link>
@@ -60,6 +60,7 @@ export default class App extends Vue {
 
    created() {
       this.cached = !!this.$cookies.get('cached');
+      setInterval(() => (this.cursed = !this.cursed && Math.random() < 1 / 4), 3000);
    }
 
    mounted() {
@@ -76,12 +77,6 @@ export default class App extends Vue {
    resizeContent() {
       this.headerHeight = document.getElementById('header')?.clientHeight ?? 0;
       this.footerHeight = document.getElementById('footer')?.clientHeight ?? 0;
-   }
-
-   curse(): void {
-      if (Math.random() < 1 / 2) return;
-      this.cursed = true;
-      setTimeout(() => (this.cursed = false), 3000);
    }
 }
 </script>

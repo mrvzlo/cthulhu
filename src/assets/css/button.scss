@@ -107,3 +107,7 @@
       line-height: 180%;
    }
 }
+
+.btn-group .btn-outline-primary:hover:not(.active) {
+   background-color: #477;
+}

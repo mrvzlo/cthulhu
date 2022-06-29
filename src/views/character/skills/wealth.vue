@@ -2,7 +2,7 @@
    <table class="table table-bordered text-start border-dark border-start border-end">
       <tr>
          <th class="col-6">Статус</th>
-         <td class="col-4">{{ wealthTypes[getWealth()] }}</td>
+         <td class="col-5">{{ wealthTypes[getWealth()] }}</td>
       </tr>
       <tr>
          <th>Зарплата</th>
@@ -37,7 +37,7 @@ export default class Wealth extends Vue.with(Props) {
 
    getBonus() {
       const wealth = this.getWealth();
-      return wealth == 0 ? '+1 главный' : wealth == 1 ? '+1 второстепенный' : '+1 хобби';
+      return wealth == 0 ? '1 экспертиза' : wealth == 1 ? '1 специализация' : '1 хобби';
    }
 
    getCach() {

@@ -28,7 +28,7 @@
 }
 
 .op-1 {
-   opacity: 0.05;
+   opacity: 0.1;
 }
 
 .z-index-10k {
@@ -45,4 +45,14 @@
 
 .shadow-xl {
    box-shadow: 0 0 8px 4px #000;
+}
+
+.rounded-right {
+   border-top-right-radius: 100% 150%;
+   border-bottom-right-radius: 100% 150%;
+}
+
+.rounded-left {
+   border-top-left-radius: 100% 150%;
+   border-bottom-left-radius: 100% 150%;
 }

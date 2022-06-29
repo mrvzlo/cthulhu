@@ -34,28 +34,28 @@
       </div>
 
       <div :class="'mx-auto ' + (character.status === creationStep.CommonSkills ? '' : 'd-none')">
-         <div class="mb-3">
+         <div class="mb-3 mx-3">
             <div class="mb-2">2) Распределите очки улучшений между навыками</div>
             <div class="d-inline-block text-start">
                <div class="d-inline-flex w-100">
                   <div class="me-auto">
                      Э - экспертиза увеличивает параметр на <b>{{ prof.Expert }}</b> очков.
                   </div>
-                  <div class="badge bg-dark w-25px ms-2 px-0">{{ skillPointsManager.left(prof.Expert) }}</div>
+                  <div class="badge bg-dark w-25px ms-2 px-0 my-auto">{{ skillPointsManager.left(prof.Expert) }}</div>
                </div>
                <br />
                <div class="d-inline-flex w-100 my-1">
                   <div class="me-auto">
                      С - специализация увеличивает параметр на <b>{{ prof.Adept }}</b> очков.
                   </div>
-                  <div class="badge bg-dark w-25px ms-2 px-0">{{ skillPointsManager.left(prof.Adept) }}</div>
+                  <div class="badge bg-dark w-25px ms-2 px-0 my-auto">{{ skillPointsManager.left(prof.Adept) }}</div>
                </div>
                <br />
                <div class="d-inline-flex w-100">
                   <div class="me-auto">
                      Х - хобби увеличивает параметр на <b>{{ prof.Hobby }}</b> очков.
                   </div>
-                  <div class="badge bg-dark w-25px ms-2 px-0">{{ skillPointsManager.left(prof.Hobby) }}</div>
+                  <div class="badge bg-dark w-25px ms-2 px-0 my-auto">{{ skillPointsManager.left(prof.Hobby) }}</div>
                </div>
             </div>
          </div>
@@ -171,6 +171,7 @@ export default class Skills extends Vue.with(Props) {
    reset() {
       this.character.skills.forEach((x) => x.clearBonus());
       this.skillPointsManager.reset();
+      this.canReset = this.skillPointsManager.canReset();
    }
 }
 </script>

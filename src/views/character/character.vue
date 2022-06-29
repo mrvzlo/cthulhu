@@ -29,5 +29,10 @@ export default class CharacterInfo extends Vue {
    created() {
       this.character = this.saveService.getData(new Character()).result;
    }
+
+   clear() {
+      this.saveService.deleteSave();
+      this.character = new Character();
+   }
 }
 </script>

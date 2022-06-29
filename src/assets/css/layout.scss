@@ -31,13 +31,19 @@ a {
 }
 
 body {
-   background: url('~@/assets/images/logo.svg');
-   background-position: center;
-   background-repeat: no-repeat;
+   background: url('~@/assets/images/logo.svg') no-repeat center center fixed;
    overflow: overlay;
 }
 
+.back-logo {
+   opacity: 1 !important;
+}
+
 #menu {
+   .container {
+      opacity: 1;
+      transition: all 2s ease-in;
+   }
    &.show {
       height: 69px;
    }
@@ -46,6 +52,10 @@ body {
    }
    &.first-load {
       height: 90vh;
+
+      .container {
+         opacity: 0;
+      }
    }
    overflow: hidden;
    transition: all 0.5s;
