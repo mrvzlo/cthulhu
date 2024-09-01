@@ -2,7 +2,7 @@
    <div class="text-center mt-2">
       <div class="d-flex justify-content-between mt-2">
          <div class="w-50px"></div>
-         <div class="fs-2 mb-5">Навыки</div>
+         <div class="fs-2 mb-2">Навыки</div>
          <div class="w-50px">
             <button class="btn btn-warning py-1" v-on:click="reset()" v-if="canReset">
                <i class="fas fa-sync fa-fw"></i>
@@ -59,7 +59,7 @@
                </div>
             </div>
          </div>
-         <div class="d-inline-block">
+         <div class="d-inline-block overflow-auto" :style="'max-height: 50vh'">
             <template v-for="group in service.getGroupped()" v-bind:key="group.id">
                <div class="h5 mb-2">{{ group.name }}</div>
                <template v-for="skill in group.skills" v-bind:key="skill.id">

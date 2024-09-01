@@ -4,7 +4,7 @@
       <a class="" href="#/aging">жизненный путь</a> и снаряжение. А потом перенесите это на
       <a href="cthulhu/character-sheet.pdf" class="" target="_blank">лист</a>.
    </div>
-   <div class="row mt-5 mx-3">
+   <div class="row mt-5 mx-3 overflow-auto" style="max-height: 50vh">
       <div class="col-lg-4 col-12 text-start">
          <div class="d-flex mb-3">
             <span class="align-middle me-2 fs-5 flex-grow-1">Очки здоровья</span>

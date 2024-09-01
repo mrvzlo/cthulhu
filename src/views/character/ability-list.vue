@@ -42,24 +42,25 @@ import Character from './models/character';
    components: { Modal },
 })
 export default class AbilityList extends Vue {
-   character = new Character();
    modalText = '';
    modalTitle = '';
 
    mounted() {
+      (window as any).baba = () => console.log(this.$props);
       new BootstrapHelper().init();
    }
 
    div(ability: number, division: number): number {
-      const result = this.character.abilities[ability].value / division;
+      const result = (this.$props as any).character.abilities[ability].value / division;
       return Math.floor(result);
    }
 
    checkLimit(ability: AbilityInterface): void {
-      let value = this.character.abilities[ability.id].value;
+      const character = (this.$props as any).character;
+      let value = character.abilities[ability.id].value;
       if (value < ability.min) value = ability.min;
       if (value > 90) value = 90;
-      this.character.abilities[ability.id].value = value;
+      character.abilities[ability.id].value = value;
    }
 
    showDescription(ability: AbilityInterface): string {

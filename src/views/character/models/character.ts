@@ -68,6 +68,6 @@ export default class Character {
    }
 
    get hobbies(): number {
-      return Math.max(0, this.abilities[this.abilityTypes.Int].value / 10 - 1);
+      return Math.max(0, Math.round(this.abilities[this.abilityTypes.Int].value / 10 - 1));
    }
 }

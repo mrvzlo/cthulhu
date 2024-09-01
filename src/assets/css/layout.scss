@@ -1,5 +1,9 @@
 :root {
-   --bs-body-rgb: 221, 221, 221;
+   --bs-body-bg-rgb: 221, 221, 221;
+}
+
+.table {
+   --bs-table-bg: transparent;
 }
 
 .container {

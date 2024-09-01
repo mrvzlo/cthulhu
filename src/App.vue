@@ -35,9 +35,9 @@
          <div :class="'bg-primary d-flex ' + (openWave ? 'show' : 'fall') + (cached ? '' : ' first-load')" id="menu">
             <div class="container my-auto d-flex text-center" v-on:click="openWave = !openWave">
                <div></div>
-               <a class="unsure text-secondary me-lg-5 me-3" href="https://twitter.com/andrejevve">Twitter</a>
+               <a class="unsure text-secondary me-lg-5 me-3" href="https://instagram.com/andrejevve">Instagram</a>
                <a class="unsure text-secondary me-lg-5 me-3" href="https://t.me/andrejevve">Telegram</a>
-               <div class="ms-auto text-end text-secondary">made by AVE</div>
+               <div class="ms-auto text-end text-secondary">made by AndrejevVE</div>
             </div>
          </div>
       </div>
@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import { Vue, Options } from 'vue-class-component';
+import SettingsService from './data-layer/saving/settings.service';
 import DropButton from './views/shared/drop-button.vue';
 
 @Options({
@@ -57,9 +58,10 @@ export default class App extends Vue {
    headerHeight = 0;
    footerHeight = 0;
    cached = true;
+   settings = new SettingsService();
 
    created() {
-      this.cached = !!this.$cookies.get('cached');
+      this.cached = !!this.settings.getCached();
       setInterval(() => (this.cursed = !this.cursed && Math.random() < 1 / 4), 3000);
    }
 
@@ -67,7 +69,7 @@ export default class App extends Vue {
       if (!this.cached)
          setTimeout(() => {
             this.cached = true;
-            this.$cookies.set('cached', this.cached);
+            this.settings.setCached(new Date().toString());
          }, 1000);
 
       new ResizeObserver(() => this.resizeContent()).observe(document.getElementById('header')!);

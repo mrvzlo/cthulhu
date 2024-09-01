@@ -30,8 +30,10 @@
       </div>
    </div>
 
-   <div v-if="manual" class="text-center">
-      <div v-if="character.abilityPoints > 0">{{ character.abilityPoints }} свободных очков</div>
+   <div v-if="manual" class="text-center py-3 fs-4">
+      <div v-if="character.abilityPoints > 0">
+         Распределите <b>{{ character.abilityPoints }}</b> свободных очков
+      </div>
       <div v-if="character.abilityPoints < 0">Перебор {{ -character.abilityPoints }} очков</div>
    </div>
 
@@ -110,7 +112,7 @@
       </button>
    </div>
 
-   <modal :modalTitle="'Выберите атрибут'" :id="'abilityPick'" :specificClass="'modal-sm'">
+   <modal :modalTitle="'Выберите атрибут'" :id="'abilityPick'" :specificClass="'modal-sm'" class="fade">
       <div class="py-2">
          <div v-for="ability in service.getNotRandom()" v-bind:key="ability">
             <div v-if="character.abilities[ability.id].value === 0" class="dropdown-item px-3" data-bs-dismiss="modal" v-on:click="apply(ability.id)">

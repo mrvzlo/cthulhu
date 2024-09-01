@@ -8,7 +8,7 @@
       </div>
       <div class="mt-3">
          Во время игры каждый участник имеет в своём распоряжении персонажа, с помощью которого происходит взаимодействие с миром. Персонажи попадают
-         в игровую ситуацию из которой им необходимо выбраться, желательно живыми. Основное место и времся событий - это
+         в игровую ситуацию из которой им необходимо выбраться, желательно живыми. Основное место и время событий - это
          <a href="https://ru.wikipedia.org/wiki/Ревущие_двадцатые">США 1920-1930 годов</a>. Каждый персонаж представляет из себя жителя той эпохи с
          соответствующими занятиями, увлечениями, страхами, знаниями и нравами. Характеристики и навыки каждого смертного существа обозначаются
          числами в пределах от <b>0%</b> до <b>100%</b>.
@@ -23,11 +23,35 @@
          большее количество костей и выбрать из них большее, если обстоятельства неблагоприятные, или меньшее, если благоприятные. Главный принцип в
          том, чем <b>ниже</b> результат кубов, тем лучше.
       </div>
+
+      <div class="d-flex">
+         <div class="w-300px m-auto py-3">
+            <div class="text-center">Пример навыка</div>
+            <input class="form-range" type="range" v-model="example.value" />
+            <div>
+               Обычный успех <b>≤{{ example.value }}</b>
+            </div>
+            <div>
+               Трудный успех <b>≤{{ div(example.value, 2) }}</b>
+            </div>
+            <div>
+               Экстремальный успех <b>≤{{ div(example.value, 5) }}</b>
+            </div>
+         </div>
+      </div>
    </div>
 </template>
 
 <script lang="ts">
+import { reactive } from 'vue';
 import { Vue } from 'vue-class-component';
 
-export default class Alignment extends Vue {}
+export default class Concept extends Vue {
+   example = reactive({ value: 50 });
+
+   div(value: number, division: number): number {
+      const result = value / division;
+      return Math.floor(result);
+   }
+}
 </script>
